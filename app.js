@@ -1,4 +1,5 @@
 var express = require('express');
+var phantom = require('phantom');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
@@ -9,11 +10,16 @@ if ('development' == app.get('env')) {
   port = 3000;
 }
 
-app.listen(port);
-console.log('Listening on port ' + port);
-
 app.get('/', function(req, res){
-  res.send('Hello World!');
+  phantom.create(function(ph) {
+    return ph.createPage(function(page) {
+      return page.open("https://plus.google.com/hangouts/_/", function(status) {
+        console.log("opened google? ", status);
+        res.send('login hit');
+        ph.exit();
+      });
+    });
+  });
 });
 
 app.post('/courses/:course_id/hangout', function(req, res) {
@@ -22,3 +28,5 @@ app.post('/courses/:course_id/hangout', function(req, res) {
   res.send("<blink>" + message + "</blink>");
 });
 
+app.listen(port);
+console.log('Listening on port ' + port);
