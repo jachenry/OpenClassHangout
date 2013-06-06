@@ -10,6 +10,11 @@ if ('development' == app.get('env')) {
   port = 3000;
 }
 
+app.get('/ping', function(req, res) {
+  var now = new Date().getTime();
+  res.send("<h1> Time: " + now + "</h1>");
+});
+
 app.get('/', function(req, res){
   phantom.create(function(ph) {
     return ph.createPage(function(page) {
