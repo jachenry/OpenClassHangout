@@ -23,13 +23,14 @@ app.get('/', function(req, res){
 });
 
 app.post('/courses/:course_id/hangout', function(req, res) {
-  var message = "Starting a hangout for course number: " + req.params.course_id;
+  var courseId = req.params.course_id;
+  var requester = req.query.requester;
+  var clientId = req.query.clientId;
+  var message = "Starting a hangout for course number: " + courseId;
+  var hangoutURL = "https://plus.google.com/hangouts/_/";
   console.log(message);
-  res.send("<blink>" + message + "</blink>");
-});
-
-io.sockets.on('connection', function (socket) {
-    console.log("SOCKETS =====================>");
+  io.sockets.emit('hangout_' + courseId, { requester:requester, course_id:courseId, hangout_url:hangoutURL, requester_client_id:clientId });
+  res.status(201).send();
 });
 
 server.listen(port);
