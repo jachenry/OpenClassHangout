@@ -30,7 +30,7 @@ app.post('/courses/:course_id/hangout', function(req, res) {
   var hangoutURL = "https://plus.google.com/hangouts/_/";
   console.log(message);
   io.sockets.emit('hangout_' + courseId, { requester:requester, course_id:courseId, hangout_url:hangoutURL, requester_client_id:clientId });
-  res.status(201).send();
+  res.status(201).send("Created");
 });
 
 server.listen(port);
