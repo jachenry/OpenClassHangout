@@ -28,5 +28,9 @@ app.post('/courses/:course_id/hangout', function(req, res) {
   res.send("<blink>" + message + "</blink>");
 });
 
-app.listen(port);
+io.sockets.on('connection', function (socket) {
+    console.log("SOCKETS =====================>");
+});
+
+server.listen(port);
 console.log('Listening on port ' + port);
