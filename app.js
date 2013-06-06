@@ -13,6 +13,6 @@ app.post('/courses/:course_id/hangout', function(req, res) {
   res.send("<blink>" + message + "</blink>");
 });
 
-var port = 8080;
+var port = 3000;
 app.listen(port);
 console.log('Listening on port ' + port);
