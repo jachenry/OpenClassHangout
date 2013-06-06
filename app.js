@@ -8,8 +8,9 @@ app.get('/', function(req, res){
 });
 
 app.post('/courses/:course_id/hangout', function(req, res) {
-  console.log("Starting a hangout for course number: ");
-  console.log(req.params);
+  var message = "Starting a hangout for course number: " + req.params.course_id;
+  console.log(message);
+  res.send("<blink>" + message + "</blink>");
 });
 
 var port = 8080;
