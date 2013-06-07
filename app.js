@@ -10,6 +10,10 @@ if ('development' == app.get('env')) {
   port = 3000;
 }
 
+app.configure(function(){
+  app.use(express.bodyParser());
+});
+
 app.get('/ping', function(req, res) {
   var now = new Date().getTime();
   res.send("<h1> Time: " + now + "</h1>");
