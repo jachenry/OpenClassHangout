@@ -18,7 +18,7 @@ app.get('/ping', function(req, res) {
 app.post('/courses/:course_id/hangout', function(req, res) {
   var courseId = req.params.course_id;
   var requester = req.query.requester;
-  var clientId = req.query.clientId;
+  var clientId = req.query.client_id;
   var message = "Starting a hangout for course number: " + courseId;
 
   console.log(message);
